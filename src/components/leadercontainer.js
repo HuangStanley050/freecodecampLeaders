@@ -17,10 +17,10 @@ class LeaderContainer extends React.Component{
         console.log("updated");
     }
     
-    componentDidMount(){
+    async componentDidMount(){
         
         console.log("Mounted");
-        const first=axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
+        const first=await axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
         .then(function (response) {
             console.log("setstate1");
             return response;
@@ -30,9 +30,10 @@ class LeaderContainer extends React.Component{
             console.log(error);
         });
         
-        const second=axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
+        const second=await axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
         .then(function (response) {
             console.log("setstate2");
+            return response;
             
             //this.setState({alltime_data:response});
          })
@@ -41,6 +42,7 @@ class LeaderContainer extends React.Component{
         });
         console.log(first);
         console.log(second);
+        this.setState({recent_data:first,alltime_data:second})
     }
     render(){
        
