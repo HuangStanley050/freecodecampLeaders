@@ -1,0 +1,13 @@
+.tableWrapper.leader{
+    margin-top: 20px;
+    height: 500px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: blue;
+}
+
+.tableWrapper.leader h2{
+    text-align: center;
+    color: white;
+}
