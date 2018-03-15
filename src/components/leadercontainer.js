@@ -12,9 +12,11 @@ class LeaderContainer extends React.Component{
             recent_data:[],
             alltime_data:[]
         }
+        this.showList=this.showList.bind(this);
     }
     componentDidUpdate(){
-        console.log("updated");
+       console.log("updated");
+            
     }
     
     async componentDidMount(){
@@ -44,24 +46,31 @@ class LeaderContainer extends React.Component{
         //console.log(second);
         this.setState({recent_data:first,alltime_data:second})
     }
+    
+    showList(listname){
+        alert(listname);
+    }
     render(){
         
         var testList=[];
+        var alltimeList=[];
         var username;
         var recentPts;
         var alltimePts;
         var spot;
         
+        
         if(this.state.recent_data.length!==0){
-            for(var i=0;i<5;i++){
-                console.log("recent-->"+this.state.recent_data.data[i].username);
+            for(var i=0;i<10;i++){
+                //console.log("recent-->"+this.state.recent_data.data[i].username);
                 username=this.state.recent_data.data[i].username;
                 alltimePts=this.state.recent_data.data[i].alltime;
                 recentPts=this.state.recent_data.data[i].recent;
                 spot=i;
+                
                 testList.push(
-                        <tr>
-                            <td>{spot}</td>
+                        <tr key={spot}>
+                            <td>{spot+1}</td>
                             <td>{username}</td>
                             <td>{recentPts}</td>
                             <td>{alltimePts}</td>
@@ -72,16 +81,30 @@ class LeaderContainer extends React.Component{
         }
         
         if(this.state.alltime_data.length!==0){
-            for(i=0;i<5;i++){
-                console.log("all time-->"+this.state.alltime_data.data[i].username);
+            for(i=0;i<10;i++){
+                //console.log("all time-->"+this.state.alltime_data.data[i].username);
+                username=this.state.alltime_data.data[i].username;
+                alltimePts=this.state.alltime_data.data[i].alltime;
+                recentPts=this.state.alltime_data.data[i].recent;
+                spot=i;
+                alltimeList.push(
+                        <tr key={spot}>
+                            <td>{spot+1}</td>
+                            <td>{username}</td>
+                            <td>{recentPts}</td>
+                            <td>{alltimePts}</td>
+                        </tr>
+                
+                )
             }
         }
+        
         
        
         return (
         <div>
             <Header />
-            <LeaderTable recent={testList}/>
+            <LeaderTable  alltime={alltimeList} recent={testList}/>
         </div>
             );
     }
